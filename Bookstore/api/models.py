@@ -1,33 +1,33 @@
 from django.db import models
 
-# Create your models here.
-from django.contrib.auth.models import AbstractUser
-from django.db import models
-from django.utils.translation import gettext_lazy as _
+# # Create your models here.
+# from django.contrib.auth.models import AbstractUser
+# from django.db import models
+# from django.utils.translation import gettext_lazy as _
 
-from . import managers # we will write this file shortly
+# from . import managers # we will write this file shortly
 
 
-class CustomUser(AbstractUser):
-    username = None
-    email = models.EmailField(_('email address'), unique=True)
-    gender = models.CharField(
-        max_length=140,
-        null=True,
-        choices=(
-            ('Male', 'Male'),
-            ('Female', 'Female'),
-            ('Other', 'Other')
-        )
-    )
-    # picture = models.models.ImageField(upload_to='uploads/% Y/% m/% d/')
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+# class CustomUser(AbstractUser):
+#     username = None
+#     email = models.EmailField(_('email address'), unique=True)
+#     gender = models.CharField(
+#         max_length=140,
+#         null=True,
+#         choices=(
+#             ('Male', 'Male'),
+#             ('Female', 'Female'),
+#             ('Other', 'Other')
+#         )
+#     )
+#     # picture = models.models.ImageField(upload_to='uploads/% Y/% m/% d/')
+#     USERNAME_FIELD = 'email'
+#     REQUIRED_FIELDS = []
 
-    objects = managers.CustomUserManager()
+#     objects = managers.CustomUserManager()
 
-    def __str__(self):
-        return f"{self.email}'s custom account"
+#     def __str__(self):
+#         return f"{self.email}'s custom account"
     
 class Author(models.Model):
     name = models.CharField(verbose_name='نویسنده',max_length=255,blank=True,null=True,default='author')
@@ -48,7 +48,7 @@ class Book(models.Model):
     description = models.TextField(verbose_name='توضیحات')
 
 class Customer(models.Model):
-    user = models.ForeignKey(to=CustomUser,on_delete=models.CASCADE)
+    # user = models.ForeignKey(to=CustomUser,on_delete=models.CASCADE)
     email = models.EmailField(verbose_name='ایمیل')
     address = models.CharField(verbose_name='ادرس',max_length=255,blank=True,null=True,default='address')
     phone = models.CharField(verbose_name='تماس',max_length=255,blank=True,null=True,default='phone')
